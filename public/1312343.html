@@ -1,0 +1,77 @@
+﻿<html ng-app ="myApp">
+	<head>
+		<link rel = "stylesheet" href="css/reset.css" type="text/css"/>
+		<link rel = "stylesheet" href="css/text.css" type="text/css"/>
+		<link rel = "stylesheet" href="css/960.css" type="text/css"/>
+		<link rel = "stylesheet" href="css/default.css" type="text/css"/>	
+		<!-- AngularJS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+
+		<!-- Firebase -->
+		<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+		<!-- AngularFire -->
+		<script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+		<script src= "js/data.js"></script>	
+	</head>
+	<body>
+	<div ng-controller ="Writer">
+			<div ng-controller ="Question">
+				<ul>
+					<li><a class="active" href="#Menu" ng-click="Menu()">Trang chủ</a></li>
+					<li><a href="#list" ng-click="click()">Danh sách</a></li>
+					<li ng-repeat = "la in User.Writer" ng-show="checked" ng-click="Menu()">
+						<a class="position" href="#Tex{{la.Name}}">{{la.Name}}</a>
+					</li>
+					<li><a class="active" href="#Game" ng-click="Game()">Kiểm tra kiến thức </a></li>
+				</ul>
+				<div id = "title" class="container_12" ng-show="Writer">	
+				<h1 id="Game">{{User.Test}}</h1><hr>
+					<div class = "grid_12 alpha" ng-controller="Result">
+						<li ng-repeat="q in User.Question" ng-show="checkedTest">
+							<h5>Câu {{$index + 1}} :{{q.Q}}<h5>
+							<form name="Ans" >
+								<input type="radio"  name="gender" ng-model="mform.Ans" value="A">{{q.f1}}<br>
+								<input type="radio"  name="gender" ng-model="mform.Ans" value="B" >{{q.f2}}<br>
+								<input type="radio"  name="gender" ng-model="mform.Ans" value="C" >{{q.f3}}<br>
+								<input type="radio"  name="gender" ng-model="mform.Ans" value="D" >{{q.f4}}<hr>
+							</form>	
+						</li>
+						<button class="button button6 " ng-click="countdown()" ng-hide="checkedTest">Bắt đầu bài kiểm tra</button>
+						<button class="button button6 " ng-click="result()" ng-show="checkedTest">Kết thúc bài kiểm tra</button>
+							<h5 >Ans :{{len}}</h5>
+					</div>
+					<div class="alert" ng-show="checkedTest">{{counter}}</div>
+				</div>
+			</div>
+		<title>{{User.Headline}}</title>
+		<div id = "title" class="container_12" ng-hide="Writer">	
+		<h1 id="Menu">{{User.Tittle}}</h1><hr>
+			<div class = "grid_12 alpha">
+				<div class = "grid_2 alpha">
+				</div>
+					<div id="Info" class = "grid_10 omega ">
+					<li ng-repeat="li in User.Writer">
+						<div id="Img" class = "grid_3 alpha omega ">
+							<img src = "{{li.Img}}.jpg" class="img img2"/>
+						</div>
+						<div id="Tex{{li.Name}}" class = "grid_6 omega ">
+							<h4>{{li.Name}}</h4>
+							<h6>Năm sinh - năm mất : {{li.BaD}}</h6>
+							<hr>
+							<h6>Sơ lược
+							<br>{{li.Sumary}}</h6>												
+						</div>
+						<div class ="clear"></div>
+						<h5>Các tác phẩm tiêu biểu</h5>
+						<div id="Achi" class = "grid_10" ng-repeat="ac in li.achievement">
+							<h6>{{ac.name}}</h6>
+						</div>
+						<hr>
+					</li>
+					</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
