@@ -14,6 +14,7 @@ myApp.controller("Writer",function($scope,$firebaseObject){
 		if($scope.Writer == true)
 			$scope.Writer = !$scope.Writer;
 		};
+	
 });
 
 myApp.controller("Question",function($scope,$timeout){ 
@@ -38,10 +39,23 @@ myApp.controller("Question",function($scope,$timeout){
 });
 
 myApp.controller("Result",function($scope){ 
+	$scope.Sa = [];
+	$scope.pick = function(){
+		$scope.mform.a = 'C';
+		$scope.Sa.push($scope.mform.a);
+	};
 	$scope.result = function(){
-		$scope.Answer = $scope.User.Question ;
-		$scope.ans = [];
-		var keys = Object.keys($scope.Answer);
-		$scope.len = keys.length;
+		var d = 0;
+		$scope.Answer = $scope.User.Question;
+		var keys = Object.keys($scope.User.Question);
+		var len = keys.length;
+		$scope.l = len;
+		for(var i = 0 ; i < len ; i++)
+		{
+			//if($scope.Answer[0].Ans == $scope.mform.Ans){
+				//d++;
+			//}
+		}
+		$scope.Sum = d;
 	};
 });

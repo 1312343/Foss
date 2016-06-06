@@ -16,8 +16,12 @@
 	</head>
 	<body>
 	<div ng-controller ="Writer">
+		<ul class="ver">
+			<li style="float:left; font-size:30px;font-weight: bold">{{User.Headline}}</li>
+			<li><button class="button button6" style="float:right">Đăng nhập</a></li>
+		</ul>
 			<div ng-controller ="Question">
-				<ul>
+				<ul class="hor">
 					<li><a class="active" href="#Menu" ng-click="Menu()">Trang chủ</a></li>
 					<li><a href="#list" ng-click="click()">Danh sách</a></li>
 					<li ng-repeat = "la in User.Writer" ng-show="checked" ng-click="Menu()">
@@ -30,16 +34,16 @@
 					<div class = "grid_12 alpha" ng-controller="Result">
 						<li ng-repeat="q in User.Question" ng-show="checkedTest">
 							<h5>Câu {{$index + 1}} :{{q.Q}}<h5>
-							<form name="Ans" >
-								<input type="radio"  name="gender" ng-model="mform.Ans" value="A">{{q.f1}}<br>
-								<input type="radio"  name="gender" ng-model="mform.Ans" value="B" >{{q.f2}}<br>
-								<input type="radio"  name="gender" ng-model="mform.Ans" value="C" >{{q.f3}}<br>
-								<input type="radio"  name="gender" ng-model="mform.Ans" value="D" >{{q.f4}}<hr>
+							<form name="mform" >
+								<input type="radio"  name="gender" ng-model="mform.a" value="A" />{{q.f1}} {{mform.a}}<br>
+								<input type="radio"  name="gender" ng-model="mform.a" value="B" />{{q.f2}}<br>
+								<input type="radio"  name="gender" ng-model="mform.a" value="C" />{{q.f3}}<br>
+								<input type="radio"  name="gender" ng-model="mform.a" value="D" />{{q.f4}}<hr>
 							</form>	
 						</li>
 						<button class="button button6 " ng-click="countdown()" ng-hide="checkedTest">Bắt đầu bài kiểm tra</button>
 						<button class="button button6 " ng-click="result()" ng-show="checkedTest">Kết thúc bài kiểm tra</button>
-							<h5 >Ans :{{len}}</h5>
+							<h5 >Ans :{{mform.Ans}}<br>Sum : {{Sum}}</h5>
 					</div>
 					<div class="alert" ng-show="checkedTest">{{counter}}</div>
 				</div>
