@@ -1,0 +1,1 @@
+firebase-import --firebase_url https://dack-a55e3.firebaseio.com --json dack-a55e3-export.json
